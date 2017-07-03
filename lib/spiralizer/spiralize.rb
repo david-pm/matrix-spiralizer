@@ -1,12 +1,12 @@
 class Spiralizer::Spiralize
-  def self.validate_input(matrix)
-    unless matrix.respond_to?(:first) && matrix.first.respond_to?(:join)
-      fail Spiralizer::InvalidInput.new("spiralize only accepts a matrix")
-    end
-  end
+  # def self.validate_input(matrix)
+  #   unless matrix.respond_to?(:first) && matrix.first.respond_to?(:join)
+  #     fail Spiralizer::InvalidInput.new("spiralize only accepts a matrix")
+  #   end
+  # end
 
   def self.spiralize(matrix:)
-    validate_input(matrix)
+    Spiralizer.validate_input(matrix)
     str = String.new
 
     until matrix.empty?
