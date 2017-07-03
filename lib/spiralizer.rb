@@ -3,6 +3,7 @@ require "spiralizer/matrices"
 require "spiralizer/matrix"
 require "spiralizer/spiralize"
 require "spiralizer/crisscross"
+require "spiralizer/cli"
 
 module Spiralizer
   class InvalidInput < StandardError; end

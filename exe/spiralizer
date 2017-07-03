@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'spiralizer/cli'
+Spiralizer::CLI.start
