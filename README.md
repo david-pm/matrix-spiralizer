@@ -1,20 +1,10 @@
 # Spiralizer
 
-Spiralizer is a command line application that cat generate matrices, consumes them, and returned nicely formatted strings 'cause why not
+Spiralizer is a command line application that can generate matrices, consume them, and returned formatted strings.
+
+![spiralizer](https://s3.amazonaws.com/uploads.sellbrite.com/7999/go.png)
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'spiralizer'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install spiralizer
 
@@ -25,8 +15,6 @@ After you've installed the gem, you can give it a try by running:
     $ spiralizer go
 
 Then just follow the prompts!
-
-![spiralizer](https://s3.amazonaws.com/uploads.sellbrite.com/7999/go.png)
 
 ## Development
 
