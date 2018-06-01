@@ -1,6 +1,6 @@
 # Spiralizer
 
-Spiralizer is a command line application that can generate matrices, consume them, and returned formatted strings.
+Spiralizer is a command line application that can generate matrices, consume them, and return formatted strings.
 
 ![spiralizer](https://s3.amazonaws.com/uploads.sellbrite.com/7999/go.png)
 
