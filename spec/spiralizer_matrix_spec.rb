@@ -42,7 +42,7 @@ RSpec.describe Spiralizer::Matrix do
 
     it 'raises when matrix cannot be built with given input' do
       expect{ Spiralizer::Matrix.the_matrix(range: (1..4), dimensions: '3x2') }
-        .to raise_error Spiralizer::InvalidInput, 'cant build matrix with range/dimensions pair'
+        .to raise_error Spiralizer::InvalidInput, 'can\'t build matrix with range/dimensions pair'
     end
   end
 end

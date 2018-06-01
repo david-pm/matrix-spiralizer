@@ -5,11 +5,11 @@ require 'spiralizer/matrices'
 class Spiralizer::CLI < Thor
   attr_reader :action, :matrix
 
-  desc "go", "starts a prompt that brings users to spiral heaven"
+  desc 'go', 'starts a prompt that brings users to spiral heaven'
   def go
     clear_screen!
     say "What would you like to do? (choose a number)\n 1 - Build a matrix\n 2 - Generate a random matrix"
-    @action = ask "> "
+    @action = ask '> '
     delegate_build_action
   rescue Spiralizer::InvalidInput => e
     say "\nUh oh! #{e.message}"
@@ -21,11 +21,11 @@ class Spiralizer::CLI < Thor
     def delegate_build_action
       say "\n"
       case action
-      when "1"
+      when '1'
         range, dimensions = user_range_and_dimensions
         @matrix = Spiralizer::Matrix.the_matrix(range: range, dimensions: dimensions)
         last_steps
-      when "2"
+      when '2'
         range, dimensions = random_range_and_dimensions
         @matrix = Spiralizer::Matrix.the_matrix(range: range, dimensions: dimensions)
         last_steps
@@ -37,10 +37,10 @@ class Spiralizer::CLI < Thor
     def delegate_action
       say "\n"
       case action
-      when "1"
-        say Spiralizer::Spiralize.spiralize(matrix: matrix)
-      when "2"
-        say Spiralizer::Crisscross.crisscross(matrix: matrix)
+      when '1'
+        say Spiralizer::Spiralize.new(matrix: matrix).perform
+      when '2'
+        say Spiralizer::Crisscross.new(matrix: matrix).perform
       else
         quit_softly
       end
@@ -48,7 +48,7 @@ class Spiralizer::CLI < Thor
 
     def user_range_and_dimensions
       range_response = ask("Please provide range. Acceptable format: (A-L) or (1-6)\n> ")
-      values         = range_response.split("-")
+      values         = range_response.split('-')
       dimensions     = ask("Please provide dimensions. Acceptable format: (4x3) or (3x2)\n> ")
       return (values.first..values.last), dimensions
     end
@@ -57,7 +57,7 @@ class Spiralizer::CLI < Thor
       say "\ngenerating..."
       sleep 1
       range_response, dimensions = Spiralizer::MATRICES[rand(6)]
-      range = range_response.split("-")
+      range = range_response.split('-')
       return (range.first..range.last), dimensions
     end
 
@@ -65,16 +65,13 @@ class Spiralizer::CLI < Thor
       say "\nHere is your M A T R I X\n------------------------"
       matrix.each { |arr| say arr.join("\t") }
       say "\nWhat would you like to do with it? (choose a number)\n 1 - Spiralize it\n 2 - Crisscross it"
-      @action = ask "> "
+      @action = ask '> '
       delegate_action
     end
 
     def clear_screen!
-      if Gem.win_platform?
-        (system "cls")
-      else
-        (system "clear")
-      end
+      return system 'cls' if Gem.win_platform?
+      system 'clear'
     end
 
     def quit_softly

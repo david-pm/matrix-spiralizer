@@ -1,15 +1,24 @@
 class Spiralizer::Spiralize
-  def self.spiralize(matrix:)
+  def initialize(matrix:)
     Spiralizer.validate_input(matrix)
-    str = String.new
+    @matrix  = matrix
+    @result  = String.new
+    @padding = String.new ' '
+  end
 
-    until matrix.empty?
-      str += matrix.shift.join(" ") + " "
-      str += matrix.map(&:pop).join(" ") + " "           unless matrix.empty?
-      str += matrix.pop.reverse.join(" ") + " "          unless matrix.empty?
-      str += matrix.map(&:shift).reverse.join(" ") + " " unless matrix.empty?
+  def perform
+    until matrix.empty? do
+      @result += @matrix.shift.join(padding).concat(padding)
+      break if matrix.empty?
+      @result += @matrix.map(&:pop).join(padding).concat(padding)
+      @result += @matrix.pop.reverse.join(padding).concat(padding)
+      @result += @matrix.map(&:shift).reverse.join(padding).concat(padding)
     end
 
-    str.downcase.strip
+    @result.downcase.strip
   end
+
+  private
+
+  attr_reader :padding, :result, :matrix
 end
